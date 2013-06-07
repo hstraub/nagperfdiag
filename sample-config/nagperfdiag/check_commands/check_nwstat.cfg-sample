@@ -1,0 +1,21 @@
+#
+# Adapt the Template if check_command should not be the PNP Template
+#
+# check_command check_nwstat!LOAD5!80%!90%
+# ________0__________|         |    |  |
+# ________1____________________|    |  |
+# ________2_________________________|  |
+# ________3____________________________|
+#
+CUSTOM_TEMPLATE = 0,1
+#
+# Change the RRD Datatype based on the check_command Name.
+# Defaults to GAUGE.
+#
+# DATATYPE = COUNTER
+
+# Change the RRD Datatype based on the check_command name.
+# Specifiy each datasource
+#
+# Example for check_iftraffic
+# DATATYPES = COUNTER:COUNTER:GAUGE:GAUGE

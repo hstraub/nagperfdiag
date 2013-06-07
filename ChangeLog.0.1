@@ -1,0 +1,50 @@
+**Version trunk 
+
+**Version 0.1 is now nagperfdiag 2008-06-09 Herbert Straub
+  * Don´t exit process_perfdata.pl when process_perfdata.cfg is missig (v451),
+  * Write a DEBUG message, if process_perfdata.cfg is missing
+  * Code style reformating, in sync with SVN 455 upstream
+  * Code style reformating for functions.inc.php
+  * Add vim Setup Line, shiftwidth and tabstop is 4 and expandtab
+  * Consolidate logic in function.pnp.in, doDataArray Section display
+  * Simplify the doDataArray Section display page logic removing unnecessary branches(3)
+    4 branches doing nearly the same
+  * Fork nagperfdiag from pnp
+  * Splitting old ChangeLog in ChangeLog.pnp
+  * Modifiying Authors, add authors of libraries, add license informations
+  * Code style reformating, see http://www.linuxhacker.at for details. Files:
+    - zoom.php.in
+    - index.php.in
+    - include/site.php
+    - include/debug.php
+    - ajax.php.in
+  * rename share/pnp to share/nagperfdiag
+  * rename sample-config/pnp to sample-config/nagperfdiag
+  * rework all autoconf and automake files for pnp->nagperfiag
+  * add include/base.php with the nagperfdiag class; function logMessage and dumpMessage
+    this log the message to syslog
+  * Moving the js library from include to root
+  * add improved regular expresssion specification to page configs
+    see sample-config/web_traffic.cfg-sample
+  * Bugfix Page display, display Range and Datasource(for multi_graph)
+  * replace pnp Logo with nagperfdiag.png
+  * Three new logging configuration parameter:
+    - $conf['logging']['priority']=LOG_ERR;
+    - $conf['logging']['facility']=LOG_DAEMON;
+    - $conf['logging']['dump_enabled']=false;
+  * Calendar support in Pages + view
+  * Bugfix missing </form> in SearchBox; Calendar image is in next line?
+
+**Version 0.4.8.1 (pnp4nagios-hs) 2008-05-09 Herbert Straub <herbert@linuxhacker.at>
+  * process_perfdata.pl: adding normalize_values function
+  * RRD Datatype definition per DS count
+  * Removing AC_STRUCT_DIRENT_D_TYPE
+  * fixing --datadir configure option
+  * fixing make fullinstall with install-processperfdata install-html
+  * fixing make-install and add to fullinstall
+  * add check_hddtemp.php template
+  * add check_iftraffic.php template
+  * bug fix process_perfdata.pl: use RRDs detection failed
+  * add NORMALIZE_VALUES Parameter
+  * add check_disk_1.php working with NORMALIZE_VALUES
+  * add helper_functions.php

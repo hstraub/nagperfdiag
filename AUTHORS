@@ -1,0 +1,27 @@
+Authors:
+Herbert Straub <herbert@linuxhacker.at>
+See http://www.linuxhacker.at for details
+
+Authors of FPDI library
+Jan Slabon (Apache License)
+http://www.setasign.de/products/pdf-php-solutions/fpdi/
+
+Authors FPDF Library
+Oliver Plathey (Freeware License)
+http://www.fpdf.org/
+
+Authors Javascript Calendar Library
+Thomas Fuchs (BSD Style License)
+http://script.aculo.us
+http://mir.aculo.us
+
+Authors Tooltipp library
+Walter Zorn LGPL
+http://www.walterzorn.com/tooltip
+
+Authors of PNP (original version and patches):
+Jörg Linge pitchfork@pnp4nagios.org
+Hendrik Bäcker andurin@process-zero.de
+Herbert Straub <herbert@linuxhacker.at>
+NagVis code parts (site.php)
+http://www.pnp4nagios.org/

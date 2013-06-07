@@ -1,0 +1,53 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+LOGDIR=@localstatedir@
+CFGDIR=@CFG_DIR@
+BINDIR=@bindir@
+LIBEXECDIR=@libexecdir@
+CGIDIR=@sbindir@
+HTMLDIR=@datadir@/nagperfdiag
+INSTALL=@INSTALL@
+INSTALL_OPTS=@INSTALL_OPTS@
+PERFDATADIR=@PERFDATA_DIR@
+DATAROOTDIR=@datarootdir@
+
+CP=@CP@
+
+all html:
+
+clean:
+	-rm -f nagperfdiag/config.php
+	-rm -f nagperfdiag/process_perfdata.cfg-sample
+	-rm -f nagperfdiag/npcd.cfg-sample
+	-rm -f misccommands.sample 
+	-rm -f xinetd.pnp.sample
+
+distclean: clean
+	-rm Makefile
+
+devclean: distclean
+
+install:
+	-rm -f $(HTMLDIR)/conf/config.php
+
+	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(CFGDIR)
+	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(CFGDIR)/check_commands
+	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(CFGDIR)/pages
+	$(INSTALL) -m 664 $(INSTALL_OPTS)  nagperfdiag/config.php $(DESTDIR)$(CFGDIR)
+	$(INSTALL) -m 664 $(INSTALL_OPTS)  nagperfdiag/background.pdf $(DESTDIR)$(CFGDIR)
+
+install-config: 
+	-rm -f $(DESTDIR)$(HTMLDIR)/conf/config.php
+
+	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(CFGDIR)
+	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(CFGDIR)/check_commands
+	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(CFGDIR)/pages
+	
+	$(INSTALL) -m 664 $(INSTALL_OPTS)  nagperfdiag/config.php $(DESTDIR)$(CFGDIR)
+	$(INSTALL) -m 664 $(INSTALL_OPTS)  nagperfdiag/process_perfdata.cfg-sample $(DESTDIR)$(CFGDIR)
+	$(INSTALL) -m 664 $(INSTALL_OPTS)  nagperfdiag/rra.cfg-sample $(DESTDIR)$(CFGDIR)
+	$(INSTALL) -m 664 $(INSTALL_OPTS)  nagperfdiag/check_commands/check_nwstat.cfg-sample $(DESTDIR)$(CFGDIR)/check_commands
+	$(INSTALL) -m 664 $(INSTALL_OPTS)  nagperfdiag/pages/web_traffic.cfg-sample $(DESTDIR)$(CFGDIR)/pages
+
+	$(INSTALL) -m 664 $(INSTALL_OPTS)  nagperfdiag/npcd.cfg-sample $(DESTDIR)$(CFGDIR)
+	

@@ -1,0 +1,138 @@
+Historical Informations
+
+
+**Version 0.4.8:** 2008/01/05 12:30
+  * New process_perfdata.pl option -c [--config] to specify an alternate config file.
+  * France Translation added by Jean-Marie Le Borgne 
+  * XML Encoding can now be changed by using XML_ENC in process_perfdata.cfg
+  * ./configure --datarootdir= fixed by Steffen Waitz.
+  * Set SetAutoPageBreak() in doPDF function.
+  * New Option background_pdf can be used in page definitions to override the defaults. 
+  * process_perfdata.cfg: Option RRD_HEARTBEAT added. 
+  * New NPCD Option: sleep_time
+  * Fixed process_perfdata.pl race condition: config file timeout now won't be ignored
+  * Backslashes used in service descriptions are now substituted to underscores. 
+
+**Version 0.4.7:** 2008/02/27 18:40
+  * Fixed compiler errors on Solaris
+  * Switched to autoconf 2.61
+  * Fixed is_file() on older SuSE releases
+
+**Version 0.4.6:** 2008/02/10 18:20
+  * XML Tag <RRD> reflects the last rrdtool returncode and text.
+  * parse_xml() cleanup.
+  * Improved check_multi support.
+  * Calendar added to all views.
+  * New Icons based on KDE Theme nuvoX.
+  * Fixed libpng write errors.
+  * Added suport for threshold range format as described on http://nagiosplug.sourceforge.net/developer-guidelines.html#THRESHOLDFORMAT
+  * New Template check_snmp_int-bits.php. Output is displayed in Bits/s
+  * NPCD now takes care about the exit status of the executed command
+
+**Version 0.4.5:** 2007/02/10 18:20
+  * Version 0.4.5 removed because of buggy cleanup functions. Please update to 0.4.6
+
+**Version 0.4.4:** 2007/11/27 15:23
+  * Applied patches from Sven Velt to scripts/Makefile.in and sample-config/Makefile.in
+  * NPCD Fix: No more PID File creation without Daemon Mode
+  * NPCD Feature: Load thresholding through config file (experimental)
+  * Applied NPCD 'Only real files, no directory' Patch
+  * NPCD Fix: No try to write PID File after a HUP Signal
+  * NPCD Feature: File Log is now ready for testing
+  * NPCD Feature: Rotation of logfile
+  * New configure option:  --with-perfdata-spool-dir=<path_to_perfdata_spool_dir>
+  * Stay in the current timerange when switching between pages [[tracker>1829918]]
+  * New Configure Option --with-init-dir
+
+**Version 0.4.3:** 2007/10/05 19:50
+  * Displaying links to service 'NULL' fixed.
+  * Fixed Bug with 64 bit counter values
+  * check_multi Layout changed. The first part of the label will now be used as service descrition.
+
+**Version 0.4.2:** 2007/09/27 14:10
+  * Changed Makefile. config.php is now installed by calling 'make install'. Use config_local.php to make you own changes.
+  * PDF Background moved to etc/pnp/background.pdf
+  * New Config Option $conf['background.pdf'] in config.php
+  
+**Version 0.4.1:** 2007/09/13 17:30
+  * !! This is a Bugfix Release for Version 0.4 !!
+  * process_perfdata.pl 
+    * Fixed Bug in Function _parse
+  * configure.ac update. Added missing Version Macro
+  
+**Version 0.4:** 2007/9/10 11:25
+  * process_perfdata.pl rewrite. 
+    * Parser used from Nagios::Plugin::Performance.
+    * Added support for Host Perfdata processing in bulk and default mode.
+    * Code cleanup.
+    * The use of RRDs Perl module is now default.
+  * Support for check_multi Plugin added.
+  * New PDF Function for all views.
+  * Complete internal rewrite.
+  * NewPage Function for custom overview pages ( index.php?page )
+  * New Config Directory etc/pnp/pages with sample config.
+  * Nagios 3.x Host Perfdata is now supported..
+  * New check-host-alive.php Template ( Nagios 3.x ready )
+  * PDF Background Function.
+  * Signal Handling in NPCD (SIGTERM,SIGHUP,SIGINT)
+  * NEW: NPCD Init Script - Thanks to Mark
+  * Changed: Sample-Config will not be installed by default.
+    * use ''make install-config'' for this
+    * ''make fullinstall'' will install all files (init scripts, sample
+    configs, etc.)
+
+
+**Version 0.3.3:** 2007/5/25 14:00
+  * Perfdata Parser Update. Allow Negativ Values 	
+  * NPCD now deals with a config file
+  * Bug Fixed for Makefile in share while clean/distclean
+
+**Version 0.3.2:** 2007/4/7 15:00
+  * Added README.npcd for small docs about Nagios Performancedata C Daemon
+  * Changed src/Makefile.in to install npcd to nagios/bin directory
+  * do some further work on beeing plattform independent (not yet complete)
+  * Added mailinglist Pnp4nagios-users and -devel to makefile do give a hint were we are
+  * Changed configure and make script to mention new SF.net project
+  * Added DEBUG Mode in NPCD Sources
+  * Added new binary: NPCD - Nagios Perfdata C Daemon
+  * Missing gif added to SVN
+  * New: Bulk Mode added to process_perfdata.pl ( Option --bulk|-b )
+  * New: Config Files for process_perfdata.pl added.
+  * etc/pnp/process_perfdata.cfg-sample
+  * etc/pnp/rra.cfg-sample
+  * Fix for validate performance data for right label=value. Value has to be within character class [-0-9+]
+  * Fix within validate performance data: RRDTools wants to have a ''.'' instead of a '',''
+  * Created a little, just testing, NEB Module. **BEWARE** Just testing.
+
+**Version 0.3:** 2007/01/20 17:30
+  * Added Cacti Zoom Function. Thanks to Eric Steffen and the Cacti Developers!
+  * Added Calendar Function based on jscalendar ( http://jscalendar.sf.net ).
+  * New URL Options "start" and "end" to adjust the Graph Timerange.
+  * Installation is now based on autoconf. Install with './configure && make all && make install'
+  
+**Version 0.2.5:** 2006/11/02 18:54
+  * process_perfdata.pl is Nagios 3.x ready. #NO_EPN on Line 2 disable ePN. 
+  * Multigraph Support added ( Sven Velt)
+  * The PDF Functions also supports Multigraph Templates.
+  * Added Support for distributed Setups. ( Rudolf Labuschagne )
+
+**Version 0.2.4:**  2006/09/30 17:03
+  * Bug inside the PDF Funktion fixed.
+  * New Templates for check_nwstat
+  * Some fixes in process_perfdata.pl
+  * Default Language is now English.
+  * Template Names can be adjusted in process_perfdata.pl. Very usefull if you use check_nrpe or check_by_ssh. 
+
+**Version 0.2.3:**  2006/06/23 12:57
+  * Include BUG fixed.
+  * Template check_http.php fixed ( WARNING and CRITAL HRULES ).
+  * Fixed Site layout.
+
+**Version 0.2.2:**  2006/06/07 11:35
+  * **BUGFIX** PDF Export now works with template default.php
+  * New Config Option 'allowed_for_host_overview'.  
+  * Debugging is optimized. RRD errors dont produce broken images anymore.
+  * New Template variable $multiview_name[x]. 
+
+**Version 0.2.1:**  2006/05/25 13:36
+  * If no special Template is found for a particular service we use "pnp/templates.dist/default.php".

@@ -1,0 +1,18 @@
+#
+# Sample Page Config
+#
+# This is different to PNP!
+# The regular expression has to specified with the postfix _regexp
+# and the all characters between / and / are the regular expression!!
+# Now blanks in Services descriptions can be used.
+
+define  page  {
+        page_name Webserver Traffic 
+}
+
+define graph {
+        host_name_regexp 	/^host/
+        service_desc_regexp    	/^Nettraffic eth/  
+}
+
+

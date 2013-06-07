@@ -1,0 +1,54 @@
+PNP README
+-----------------
+
+English documentation:
+http://www.pnp4nagios.org/pnp/start
+
+German documentation:
+http://www.pnp4nagios.org/pnp/de/start
+
+
+pnpsender README
+----------------
+
+The Problem: 
+
+The Nagios Core Daemon has to wait for the data collector 
+called "process-perfdata.pl" to write the RRD File.
+
+In bigger Nagios installations this might result in 
+horrible latencies.
+
+Explanation:
+
+Nagios forks itself for executing nearly anything else. For example
+each service check (plugin execution), notification command, 
+ocsp and ochp commands are own child processes of the Nagios core daemon.
+
+These Nagios child processes are all controlled by the Nagios core daemon
+for timeout handling and other important stuff.
+
+Cause of this controlling the Nagios core daemon has to wait for the child 
+to exit or if the child wouldn't exit himself, the Nagios core will send
+a termination signal.
+
+PNP (http://www.pnp4nagios.org/pnp/) processes the performance data
+from nagios by calling the "process-perfdata.pl" perl script. 
+
+This means that the nagios core has to fork a child to do:
+
+1. execute the perl interpreter to execute this perl script
+2. process-perfdata.pl collects all data it needs to work
+3. process-perfdata.pl do a system call to rrdtools to write a nice rrd database
+4. and then exits.
+
+I would say that the process-perfdata.pl script is well speed optimized and need 
+no more time for execution as it really needs 
+(except for the system call to rrdtools).
+
+The solution:
+We would to degrease the waiting time for the Nagios Core Daemon to do the 
+major job for nagios (the monitoring) und not waiting for some processes 
+that are drawing a few nice graphs.
+
+To Be Continued

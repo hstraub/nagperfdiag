@@ -1,0 +1,28 @@
+2008-06-09 [r26]  Herbert Straub <herbert/at/linuxhacker.at>
+
+	* trunk/share/nagperfdiag/include/function.inc.php:
+	  - calender image without form, avoid line break
+
+2008-06-10 [r27]  Herbert Straub <herbert/at/linuxhacker.at>
+
+	* trunk/share/nagperfdiag/js/tip_followscroll.js (added),
+	  trunk/share/nagperfdiag/js/tip_balloon/t.gif (added),
+	  trunk/share/nagperfdiag/js/tip_balloon/rb.gif (added),
+	  trunk/share/nagperfdiag/js/tip_balloon.js (added),
+	  trunk/share/nagperfdiag/js/tip_balloon/stemb.gif (added),
+	  trunk/share/nagperfdiag/js/wz_tooltip.js (added),
+	  trunk/share/nagperfdiag/js/tip_balloon/background.gif (added),
+	  trunk/share/nagperfdiag/js/tip_balloon/lt.gif (added),
+	  trunk/share/nagperfdiag/js/tip_balloon/b.gif (added),
+	  trunk/share/nagperfdiag/include/function.inc.php,
+	  trunk/share/nagperfdiag/js/tip_balloon/rt.gif (added),
+	  trunk/share/Makefile.in, trunk/ChangeLog.0.1 (added),
+	  trunk/share/nagperfdiag/js/tip_centerwindow.js (added),
+	  trunk/AUTHORS, trunk/share/nagperfdiag/js/tip_balloon/l.gif
+	  (added), trunk/share/nagperfdiag/js/tip_balloon/stemt.gif
+	  (added), trunk/share/nagperfdiag/js/tip_balloon (added),
+	  trunk/share/nagperfdiag/js/tip_balloon/lb.gif (added),
+	  trunk/share/nagperfdiag/js/tip_balloon/r.gif (added):
+	  - [NEW] Tooltipp support
+	  - [NEW] ChangeLog from SVN Log
+

@@ -1,0 +1,89 @@
+.TH "pnpsender" "1" "linux-gnu" "pnpsender-v0.1"
+
+.SH "NAME"
+pnpsender \- sending nagios environment vars in XML format via network
+
+.SH "SYNOPSIS"
+\fBpnpsender\fR -H <host ip address> [-p <serverport>] -d <datatype> [-t <timeout>]
+.\"pnpsender -H <serverip> [-p <serverport>] -d <datatype> -t <timeout>
+
+.SH "DESCRIPTION"
+\fBpnpsender\fR is small binary tool written for nagios to read out the nagios 
+environment, put it into XML format and sends it through a tcp network connection
+to a receiver.
+.LP
+This receiver might be whatever you want. 
+.LP
+Actually it is designed to send data to an internet superdaemon like inetd or xinetd.
+
+.SH "OPTIONS"
+\fBpnpsender\fR 
+.TP 8
+-H
+IP Address in a.b.c.d format of the receiver.
+.TP
+-p
+Port Number the receiver listens for incoming data.
+.TP
+-d
+Identifier for the receiver. Here you may use whatever you think what is useful. Might be use for "perfdata", "ocsp", "ochp", "foo", "bar"
+
+.SH "RECEIVER"
+As mentioned above the receiver just must open a tcp network port and reads the Data from \fBpnpsender\fR.
+.LP
+In our testet config examples we are using the xinetd to handle the network socket.
+.LP
+
+.SH "XINETD howto"
+Edit your \fI/etc/services\fR (or similar) to add a new service to port definition, like this:
+.TP
+pnp           
+5660/tcp        # performance data from pnpsender
+.LP
+After this add the following xinetd config (normally in \fI/etc/xinetd.d/\fR)
+.TP
+service net2pnp
+{
+        disable         = no
+        socket_type     = stream
+        protocol        = tcp
+        port            = 5660
+        wait            = no
+        user            = nagios
+        cps             = 150 10
+        bind            = 127.0.0.1
+        server          = /usr/local/nagios/libexec/process_perfdata.pl
+        server_args     = --inetd
+ }
+.LP
+As you can see for server there is the PNP (http://www.ederdrom.de/nagios/pnp) performance data processing perl script \fIprocess-perfdata.pl\fR.
+
+.SH "DATA STRUCTURE"
+\fBpnpsender\fR sends the nagios environment in XML Style. 
+.LP
+The format is like this:
+.TP
+<NAGIOS>
+  <NAGIOS_DATATYPE>service-perfdata</NAGIOS_DATATYPE>
+  <NAGIOS_HOSTNAME>foo</NAGIOS_HOSTNAME>
+  ...
+.TP
+</NAGIOS>
+.LP
+
+.SH "LIMITATIONS"
+ 
+.LP
+At the current developing state of \fBpnpsender\fR, the complete nagios environment 
+will be read out and send through a network connection \fIwithout any cryptography\fR!
+.LP
+Currently there are no mechanism to check if the datatransfer between pnpsender and the receiver
+works correctly - will say, if your network connection is laggy it might be that the receiver miss 
+some needed data.
+.LP
+
+.SH "FILES"
+currently no files needed
+.LP
+
+.LP

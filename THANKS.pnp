@@ -1,0 +1,43 @@
+This are historical informations from the original pnp package!
+
+This data are not valid for NagPerfDiag
+
+
+###########################################
+#              PNP Thanks                 #
+###########################################
+
+Hendrik Baecker - Testing ,debugging and english Translation
+Olaf Reiss - Testing
+Andreas Koch - Testing
+Christian Mies - check_nwstat Templates, Testing
+Sebastian Schubert - Internal Design
+Stephan von Gehlen - Testing and Feedback
+Geoffrey Walton - Feedback and Translation
+Frank J. Heym - process_perfdata.pl Patch for check_nrpe Templates
+Rudolf Labuschagne - Testing PNP in distributed setups
+Sven Velt - Multigraph Layout
+Sonja Scholz - Documentation
+Andrea Gabellini - 
+Matthias Flittener - Bugreport
+Ton Kersten - Dutch Language
+Matthias Flacke - check_multi development, npcd load patch
+Markus Dorfer - 
+Christian Claus - Debugging 64bit Counter
+Herbert Straub
+Wolfgang - English translation
+Max Schubert - 
+Wolfgang Barth -
+Ethan Galstad - Patches and Feedback
+Jan Dreyer - Solaris debugging
+Jean-Marie Le Borgne - France Translation
+Steffen Waitz - ./configure Patch
+
+###########################################
+#           NPCD Thanks                   #
+###########################################
+
+Joerg Linge - for giving so much ideas what I have to do ;)
+Ethan Galstad - for many useful code to learn from
+Carsten Schlosser - for all the time I can disturb him to ask silly pointer questions
+My Girlfriend Katrin (without 'h') - for spending so much time without me

@@ -1,0 +1,100 @@
+-----------
+Installing
+-----------
+
+After installing PNP through:
+
+configure
+make all
+make install
+
+you should find a new binary in your 
+
+	/path/to/nagios/bin/ 
+
+directory called "npcd".
+
+This is the new Nagios Performancedata C Daemon (npcd).
+
+The idea was to reduce service check latency wich were mentionend 
+on bigger installations when calling process_perfdata.pl in 
+standard mode (nagios executes a perfdata_command).
+
+--------------------
+Theory of Operation
+--------------------
+
+Instead of forking a new child to execute the process_perfdata 
+command (process_perfdata.pl) Nagios will write service perfdata 
+to a file (built-in function) and rotate this file every x seconds 
+to a spool directory.
+
+npcd reads out the files in that spool directory in alphabetical order 
+and starts up process_perfdata.pl (bulk mode) with multiple threads 
+(using linux pthread library).
+
+On the other side process_perfdata.pl get the filename to process, 
+opens it read it line by line and creates/update the RRDFiles in 
+the usual way.
+
+---------------------
+Changes to nagios.cfg
+---------------------
+
+This is just a configuration example.
+
+#nagios.cfg
+
+   service_perfdata_file=/usr/local/nagios/var/service-perfdata
+
+   service_perfdata_file_template=DATATYPE::SERVICEPERFDATA\tTIMET::$TIMET$\tHOSTNAME::$HOSTNAME$\tSERVICEDESC::$SERVICEDESC$\tSERVICEPERFDATA::$SERVICEPERFDATA$\tSERVICECHECKCOMMAND::$SERVICECHECKCOMMAND$\tHOSTSTATE::$HOSTSTATE$\tHOSTSTATETYPE::$HOSTSTATETYPE$\tSERVICESTATE::$SERVICESTATE$\tSERVICESTATETYPE::$SERVICESTATETYPE$
+
+   service_perfdata_file_mode=a
+
+   service_perfdata_file_processing_interval=30
+
+   service_perfdata_file_processing_command=process-service-perfdata-file
+
+
+#commands.cfg
+
+   define command{
+        command_name    process-service-perfdata-file
+        command_line    /bin/mv /usr/local/nagios/var/service-perfdata /usr/local/nagios/var/perfspool/service-perfdata-$TIMET$
+   }
+
+-----------------------------------------
+Why working with files instead of a pipe?
+-----------------------------------------
+
+In case of a dying daemon there might be complications when working
+with pipes. Pipes might fill up when there's no reader resulting 
+in data loss.
+
+In case of a hanging npcd the performance data files were written
+continously until the filesystem reaches the end of the road.
+
+-------------------------
+What to do if npcd hangs?
+-------------------------
+
+_Hint:_
+
+RRDTools does not allow you to update data before the last update
+time.
+
+Example: npcd thread 1 updates a RRDFile on timestamp "NOW" it is
+not possible to insert data before "NOW" in timeline.
+
+So, if you have to stop npcd or it crashes over night resulting
+in a huge amount of performance data files on your filesystem I 
+would suggest to start the npcd with the changed config file option
+
+	max_threads=1
+
+to reduce the max threads to a number of one single thread.
+
+This should ensure, that your RRDFiles should be updatet in 
+alphabetical order.
+
+
